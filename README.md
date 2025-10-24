@@ -26,3 +26,12 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+<!-- Custom Snake Animation -->
+<div align="center">
+  <h2>🐍 My Contributions 🐍</h2>
+  <picture>
+    <source srcset="https://raw.githubusercontent.com/SirjanSingh/SirjanSingh/main/output/github-snake.svg#gh-light-mode-only" media="(prefers-color-scheme: light)" />
+    <source srcset="https://raw.githubusercontent.com/SirjanSingh/SirjanSingh/main/output/github-snake-dark.svg#gh-dark-mode-only" media="(prefers-color-scheme: dark)" />
+    <img src="https://raw.githubusercontent.com/AdZard69/AdZard69/main/output/github-snake-dark.svg" alt="GitHub contributions snake" />
+  </picture>
+</div>
