@@ -32,6 +32,7 @@ Here are some ideas to get you started:
   <picture>
     <source srcset="https://raw.githubusercontent.com/SirjanSingh/SirjanSingh/main/github-snake.svg#gh-light-mode-only" media="(prefers-color-scheme: light)" />
     <source srcset="https://raw.githubusercontent.com/SirjanSingh/SirjanSingh/main/github-snake-dark.svg#gh-dark-mode-only" media="(prefers-color-scheme: dark)" />
-    <img src="https://raw.githubusercontent.com/AdZard69/AdZard69/main/output/github-snake-dark.svg" alt="GitHub contributions snake" />
+    <img src="https://raw.githubusercontent.com/SirjanSingh/SirjanSingh/main/github-snake-dark.svg" alt="GitHub contributions snake" />
   </picture>
 </div>
+
