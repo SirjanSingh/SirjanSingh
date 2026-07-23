@@ -68,7 +68,7 @@ I work in machine learning and AI engineering: LLM agents and evaluation, multi-
 ## Activity
 
 <div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=SirjanSingh&theme=tokyonight&hide_border=true&bg_color=1a1b27&color=7aa2f7&line=7aa2f7&point=7aa2f7&days=90&height=280" alt="Contribution Graph" width="100%"/>
+  <img src="https://raw.githubusercontent.com/SirjanSingh/SirjanSingh/main/github-activity-graph.svg" alt="Contribution Graph (last 90 days)" width="100%"/>
 </div>
 
 <div align="center">

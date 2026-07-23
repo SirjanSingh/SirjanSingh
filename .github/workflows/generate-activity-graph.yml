@@ -1,0 +1,36 @@
+name: Generate GitHub Activity Graph
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate activity graph SVG
+        run: python scripts/thin-activity-graph-labels.py github-activity-graph.svg 5
+
+      - name: Commit and push generated SVG (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add github-activity-graph.svg || true
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "chore: update generated GitHub activity graph SVG"
+          git push origin HEAD:main
