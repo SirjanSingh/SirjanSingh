@@ -25,7 +25,6 @@ B.Tech Computer Science at **The LNM Institute of Information Technology (LNMIIT
 
 I work in machine learning and AI engineering: LLM agents and evaluation, multi-agent reinforcement learning, and RAG / hybrid-search systems, with production full-stack experience. I build and ship end to end: model fine-tuning, evaluation harnesses, APIs, and tooling.
 
-**Visiting Research Intern at King's College London** (Jun to Jul 2026): multimodal Vision Transformers / CLIP for skin-lesion classification with clinical metadata.
 
 ## Experience
 
