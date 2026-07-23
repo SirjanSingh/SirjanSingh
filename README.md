@@ -4,7 +4,7 @@
 
 # Sirjan Singh
 
-### ML/AI Engineer · LNMIIT '27 · Research Intern, King's College London
+### ML/AI Engineer · LNMIIT '27 · Former Research Intern, King's College London
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sirjan-singh-573534286)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/SirjanSingh)
@@ -25,10 +25,11 @@ B.Tech Computer Science at **The LNM Institute of Information Technology (LNMIIT
 
 I work in machine learning and AI engineering: LLM agents and evaluation, multi-agent reinforcement learning, and RAG / hybrid-search systems, with production full-stack experience. I build and ship end to end: model fine-tuning, evaluation harnesses, APIs, and tooling.
 
+**Former Visiting Research Intern at King's College London** (completed Jun to Jul 2026): multimodal Vision Transformers / CLIP for skin-lesion classification with clinical metadata.
 
 ## Experience
 
-- **King's College London** · Visiting Research Intern (Jun to Jul 2026): ViT/CLIP for skin-lesion classification with clinical metadata
+- **King's College London** · Visiting Research Intern, completed Jun to Jul 2026: ViT/CLIP for skin-lesion classification with clinical metadata
 - **AARM Health Inc.** · AI & Full Stack Intern (Apr to May 2026): built **Maya**, an LLM medical assistant with intent classification + agentic pipeline; shipped full-stack
 - **Cloudsprint Technologies (Trovex.ai)** · Software Development Trainee (Jun to Jul 2025): React.js components and REST API integrations for production apps
 - **LNMIIT (LUSIP)** · Research Intern under Dr. Preety Singh (Summer 2024): Selenium + ETL over 6,000+ Reddit pairs; neural sentiment classifier
