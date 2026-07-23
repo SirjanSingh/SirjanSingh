@@ -1,3 +1,5 @@
+<h1 align="left">YOOOOO</h1>
+
 <div align="center">
 
 # Sirjan Singh
@@ -6,9 +8,10 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sirjan-singh-573534286)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/SirjanSingh)
-[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:sirjan.singh036@gmail.com)
-[![Codeforces](https://img.shields.io/badge/Codeforces-1F8ACB?style=flat&logo=codeforces&logoColor=white)](https://codeforces.com/profile/noAnya)
+[![LeetCode](https://img.shields.io/badge/LeetCode-Knight-FFA116?style=flat&logo=leetcode&logoColor=black)](https://leetcode.com/u/noanya/)
+[![Codeforces](https://img.shields.io/badge/Codeforces-Specialist-1F8ACB?style=flat&logo=codeforces&logoColor=white)](https://codeforces.com/profile/noAnya)
 [![CodeChef](https://img.shields.io/badge/CodeChef-5B4638?style=flat&logo=codechef&logoColor=white)](https://www.codechef.com/users/sirjansingh036)
+[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:sirjan.singh036@gmail.com)
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=800&color=7AA2F7&center=true&vCenter=true&width=650&lines=LLM+agents+%26+evaluation+harnesses;Multi-agent+RL+%26+GRPO+LoRA;Hybrid+RAG+%26+cross-encoder+reranking;Incoming+KCL+ViT%2FCLIP+research;Shipping+APIs+%26+full-stack+AI)](https://git.io/typing-svg)
 
@@ -35,10 +38,10 @@ Incoming **Visiting Research Intern at King's College London** (St Thomas' campu
 
 | | |
 |:---|:---|
+| **1st Place (Arize)** | Google Cloud Rapid Agent Hackathon — **Cassandra** · $5,000 prize |
 | **Top 100** | Meta × PyTorch × Scaler OpenEnv Hackathon — multi-agent RL with GRPO + LoRA on Qwen2.5-3B |
-| **1st Place** | ACM coding competition — four rounds of logic & CTF-style challenges |
 | **Organizer** | CTRL+SPACE National Hackathon (Unstop) — 1,600+ participants, Rs. 1 Lakh prize pool |
-| **Competitive Programming** | Codeforces Specialist (1464) · LeetCode Knight (1857) · problem setter |
+| **Competitive Programming** | Codeforces Specialist (1464) · [LeetCode Knight (1857)](https://leetcode.com/u/noanya/) · problem setter |
 
 ## Projects
 
