@@ -18,6 +18,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate activity graph SVG
+        env:
+          # Set an ACTIVITY_GRAPH_TOKEN secret (PAT with read:user) to include
+          # private contributions; otherwise only public ones are counted.
+          GITHUB_TOKEN: ${{ secrets.ACTIVITY_GRAPH_TOKEN || secrets.GITHUB_TOKEN }}
         run: python scripts/thin-activity-graph-labels.py github-activity-graph.svg 5
 
       - name: Commit and push generated SVG (if changed)
