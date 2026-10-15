@@ -1,12 +1,10 @@
-<h1 align="left">YOOOOO</h1>
-
 <div align="center">
 
 # Sirjan Singh
 
 ### ML/AI Engineer · LNMIIT '27 · Former Research Intern, King's College London
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-sirjan--singh.vercel.app-111111?style=flat&logo=vercel&logoColor=white)](https://sirjan-singh.vercel.app/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-sirjansingh.dev-111111?style=flat&logo=googlechrome&logoColor=white)](https://sirjansingh.dev)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sirjan-singh-573534286)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/SirjanSingh)
 [![LeetCode](https://img.shields.io/badge/LeetCode-Knight-FFA116?style=flat&logo=leetcode&logoColor=black)](https://leetcode.com/u/noanya/)
