@@ -18,7 +18,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate activity graph SVG
-        run: python scripts/thin-activity-graph-labels.py github-activity-graph.svg 5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/generate-activity-graph.py github-activity-graph.svg 5
 
       - name: Commit and push generated SVG (if changed)
         run: |
