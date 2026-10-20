@@ -1,10 +1,8 @@
-<a href="https://sirjansingh.dev">
-  <picture>
+<picture>
     <source media="(prefers-color-scheme: dark)" srcset="./banner-dark.svg" />
     <source media="(prefers-color-scheme: light)" srcset="./banner-light.svg" />
     <img src="./banner-dark.svg" alt="Sirjan Singh. ML and AI engineer. Figure out how things work, break them, build something better." width="100%" />
-  </picture>
-</a>
+</picture>
 
 <div align="center">
 
@@ -29,12 +27,14 @@ eval harnesses, APIs, and the UI on top.
 ◆ 01 / MISSION LOG
 ```
 
-| When | Where | What |
-|:---|:---|:---|
-| Jun to Jul 2026 | **King's College London** · Visiting Research Intern | ViT / CLIP skin-lesion classification with clinical metadata |
-| Apr to May 2026 | **AARM Health Inc.** · AI & Full Stack Intern | Built **Maya**, an LLM medical assistant with intent classification and an agentic pipeline |
-| Jun to Jul 2025 | **Cloudsprint (Trovex.ai)** · SDE Trainee | React components and REST API integrations for production apps |
-| Summer 2024 | **LNMIIT (LUSIP)** · Research Intern, Dr. Preety Singh | Selenium + ETL over 6,000+ Reddit pairs, neural sentiment classifier |
+<p align="center">
+<a href="https://sirjansingh.dev/#experience"><img src="./timeline/01-aarm.svg" alt="AARM Health Inc., AI and Full Stack Intern, Apr to Sep 2026" width="100%" /></a>
+<a href="https://www.kcl.ac.uk/"><img src="./timeline/02-kcl.svg" alt="King's College London, Visiting Research Intern, Jun to Jul 2026" width="100%" /></a>
+<a href="https://sirjansingh.dev/#experience"><img src="./timeline/03-cloudsprint.svg" alt="Cloudsprint Technologies / Trovex.ai, Software Development Trainee, Jun to Jul 2025" width="100%" /></a>
+<a href="https://lnmiit.ac.in/"><img src="./timeline/04-lnmiit.svg" alt="LNMIIT LUSIP, Research Intern under Dr. Preety Singh, Summer 2024" width="100%" /></a>
+</p>
+
+<sub>Each stop is clickable.</sub>
 
 ```text
 ◆ 02 / THINGS I BUILT
