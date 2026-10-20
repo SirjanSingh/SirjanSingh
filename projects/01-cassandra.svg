@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="600" height="340" role="img" aria-label="Cassandra: An agent that watches other agents fail, and verifies the repair. Catches hallucinations, prompt drift and tool-call failures in under 10 seconds. 5 supervision tools via cassandra-mcp.">
+  <style>
+    .frame { stroke-dasharray: 100; stroke-dashoffset: 100; animation: draw 1.2s ease-out .1s forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0 } }
+    .bar { transform-box: fill-box; transform-origin: left; transform: scaleX(0); animation: grow .9s ease-out .2s forwards; }
+    @keyframes grow { to { transform: scaleX(1) } }
+    .chip { opacity: 0; animation: in .5s ease-out forwards; }
+    @keyframes in { to { opacity: 1 } }
+    @media (prefers-reduced-motion: reduce) { .frame,.bar,.chip { animation: none; stroke-dashoffset: 0; transform: none; opacity: 1 } }
+  </style>
+  <rect width="600" height="340" fill="#1d2025"/>
+  <rect class="frame" x="14" y="14" width="572" height="312" fill="none" stroke="#ece8e0" stroke-opacity=".2" pathLength="100"/>
+  <rect class="bar" x="14" y="14" width="572" height="3" fill="#4fb3c2"/>
+  <text x="40" y="52" font-family="'IBM Plex Mono',Consolas,'SFMono-Regular',Menlo,monospace" font-size="12" letter-spacing="1.8" fill="#4fb3c2">P/01  AGENT SUPERVISION</text>
+  <rect x="415" y="36" width="149" height="22" fill="none" stroke="#e3a83f" stroke-opacity=".7"/><text x="425" y="51" font-family="'IBM Plex Mono',Consolas,'SFMono-Regular',Menlo,monospace" font-size="11" letter-spacing="1.2" fill="#e3a83f">1ST PLACE · ARIZE</text>
+  <text x="40" y="98" font-family="'Schibsted Grotesk','Segoe UI',Helvetica,Arial,sans-serif" font-size="36" font-weight="700" letter-spacing="-.5" fill="#ece8e0">Cassandra</text>
+  <text x="40" y="128" font-family="'Schibsted Grotesk','Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-style="italic" fill="#a3a7ae">An agent that watches other agents fail, and verifies the</text>
+  <text x="40" y="151" font-family="'Schibsted Grotesk','Segoe UI',Helvetica,Arial,sans-serif" font-size="17" font-style="italic" fill="#a3a7ae">repair.</text>
+  <line x1="40" y1="180" x2="58" y2="180" stroke="#4fb3c2" stroke-width="2"/>
+  <text x="66" y="184" font-family="'IBM Plex Mono',Consolas,'SFMono-Regular',Menlo,monospace" font-size="11" letter-spacing="1.8" fill="#a3a7ae">RESULT</text>
+  <text x="40" y="206" font-family="'Schibsted Grotesk','Segoe UI',Helvetica,Arial,sans-serif" font-size="15.5" fill="#ece8e0">Catches hallucinations, prompt drift and tool-call failures in under</text>
+  <text x="40" y="227" font-family="'Schibsted Grotesk','Segoe UI',Helvetica,Arial,sans-serif" font-size="15.5" fill="#ece8e0">10 seconds. 5 supervision tools via cassandra-mcp.</text>
+  <g class="chip" style="animation-delay:0.40s"><rect x="40" y="284" width="64" height="22" fill="#262a30" stroke="#ece8e0" stroke-opacity=".15"/><text x="49" y="299" font-family="'IBM Plex Mono',Consolas,'SFMono-Regular',Menlo,monospace" font-size="11" letter-spacing="1" fill="#ece8e0">PYTHON</text></g>
+  <g class="chip" style="animation-delay:0.50s"><rect x="111" y="284" width="94" height="22" fill="#262a30" stroke="#ece8e0" stroke-opacity=".15"/><text x="120" y="299" font-family="'IBM Plex Mono',Consolas,'SFMono-Regular',Menlo,monospace" font-size="11" letter-spacing="1" fill="#ece8e0">GOOGLE ADK</text></g>
+  <g class="chip" style="animation-delay:0.60s"><rect x="212" y="284" width="64" height="22" fill="#262a30" stroke="#ece8e0" stroke-opacity=".15"/><text x="221" y="299" font-family="'IBM Plex Mono',Consolas,'SFMono-Regular',Menlo,monospace" font-size="11" letter-spacing="1" fill="#ece8e0">GEMINI</text></g>
+  <g class="chip" style="animation-delay:0.70s"><rect x="282" y="284" width="102" height="22" fill="#262a30" stroke="#ece8e0" stroke-opacity=".15"/><text x="291" y="299" font-family="'IBM Plex Mono',Consolas,'SFMono-Regular',Menlo,monospace" font-size="11" letter-spacing="1" fill="#ece8e0">PHOENIX MCP</text></g>
+  <text x="564" y="299" text-anchor="end" font-family="'IBM Plex Mono',Consolas,'SFMono-Regular',Menlo,monospace" font-size="12" letter-spacing="1.5" fill="#4fb3c2">CASE STUDY &#8599;</text>
+</svg>

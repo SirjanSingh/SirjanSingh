@@ -42,51 +42,16 @@ eval harnesses, APIs, and the UI on top.
 
 <table>
 <tr>
-<td width="50%" valign="top">
-
-**[Cassandra](https://github.com/SirjanSingh/cassandra)** &nbsp;`1st place · Arize track`<br/>
-An 8-stage meta-agent that watches other LLM agents through Arize Phoenix telemetry and catches
-hallucinations, drift and tool failures in under 10 seconds. Ships as `cassandra-mcp` (5 tools).
-Won the Arize prize ($5,000) at the Google Cloud Rapid Agent Hackathon.
-
-</td>
-<td width="50%" valign="top">
-
-**[SurviveCity](https://github.com/SirjanSingh/scaenv)** &nbsp;`top 100 · Meta × PyTorch`<br/>
-A multi-agent survival environment on OpenEnv (14 actions, 15 rubrics). Fine-tuned Qwen2.5-3B
-with GRPO + LoRA: mean survival went from **15% to 60%, about 4x**.
-
-</td>
+<td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/cassandra"><img src="./projects/01-cassandra.svg" alt="cassandra project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/cassandra">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/cassandra">code</a></sub></td>
+<td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/vendable"><img src="./projects/02-vendable.svg" alt="vendable project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/vendable">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/vendable">code</a></sub></td>
 </tr>
 <tr>
-<td width="50%" valign="top">
-
-**[Contextual](https://github.com/SirjanSingh/Contextual)** &nbsp;`RAG`<br/>
-Ask questions about a codebase and get answers with per-chunk citations. BM25 + FAISS +
-cross-encoder reranking, **+30%** retrieval F1. CLI, web app and VS Code extension.
-
-</td>
-<td width="50%" valign="top">
-
-**[NutriNani](https://github.com/SirjanSingh/nutrinani)** &nbsp;`live on AWS`<br/>
-A GenAI wellness app on AWS serverless: Lambda, DynamoDB, Bedrock and Gemini.
-
-</td>
+<td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/agentos"><img src="./projects/03-agentos.svg" alt="agentos project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/agentos">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/agentos">code</a></sub></td>
+<td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/survivecity"><img src="./projects/04-survivecity.svg" alt="survivecity project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/survivecity">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/scaenv">code</a></sub></td>
 </tr>
 <tr>
-<td width="50%" valign="top">
-
-**[Pathway Intelligence](https://github.com/ritigya03/Pathway)** &nbsp;`team project`<br/>
-Real-time supply-chain intelligence across 5 microservices.
-
-</td>
-<td width="50%" valign="top">
-
-**[AgentOS](https://github.com/SirjanSingh/agentos)** &nbsp;`agent tooling`<br/>
-A local control plane for Claude Code: live run streaming over WebSocket, human-in-the-loop tool
-approval, per-skill cost and success analytics, and an Obsidian vault for outputs. TypeScript + Node.
-
-</td>
+<td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/contextual"><img src="./projects/05-contextual.svg" alt="contextual project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/contextual">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/Contextual">code</a></sub></td>
+<td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/claude-kit"><img src="./projects/06-claude-kit.svg" alt="claude-kit project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/claude-kit">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/claude-kit">code</a></sub></td>
 </tr>
 </table>
 
