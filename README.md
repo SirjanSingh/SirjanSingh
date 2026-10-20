@@ -47,7 +47,7 @@ eval harnesses, APIs, and the UI on top.
 </tr>
 <tr>
 <td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/agentos"><img src="./projects/03-agentos.svg" alt="agentos project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/agentos">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/agentos">code</a></sub></td>
-<td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/survivecity"><img src="./projects/04-survivecity.svg" alt="survivecity project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/survivecity">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/scaenv">code</a></sub></td>
+<td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/survivecity"><img src="./projects/04-survivecity.svg" alt="survivecity project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/survivecity">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/zombiee-v2">code</a></sub></td>
 </tr>
 <tr>
 <td width="50%" valign="top"><a href="https://sirjansingh.dev/projects/contextual"><img src="./projects/05-contextual.svg" alt="contextual project card" width="100%" /></a><br/><sub><a href="https://sirjansingh.dev/projects/contextual">case study</a> &nbsp;◆&nbsp; <a href="https://github.com/SirjanSingh/Contextual">code</a></sub></td>

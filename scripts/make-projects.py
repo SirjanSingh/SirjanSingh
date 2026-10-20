@@ -130,24 +130,82 @@ def agentos():
                  "the cost and failures came from.", "\n  ".join(a))
 
 
+# SurviveCity city layout (v1, 3 agents), from the zombiee README (Z zombie spawn, F food, S safehouse, # wall).
+CITY = [
+    "Z........Z",
+    ".F......F.",
+    ".....#....",
+    "...#..#...",
+    "....SSS...",
+    "..#.SSS#..",
+    "....SSS...",
+    "...#.##...",
+    ".F......F.",
+    ".........Z",
+]
+
+
 def survivecity():
-    x0, x1, yb, yt = 70, 540, 236, 100
-    y15 = yb - (yb - yt) * 15 / 60
-    a = [f'<line x1="{x0}" y1="{yb}" x2="{x1}" y2="{yb}" stroke="{DIM}"/>',
-         f'<line x1="{x0}" y1="{yt - 10}" x2="{x0}" y2="{yb}" stroke="{DIM}"/>',
-         t(x1, yb + 16, "GRPO + LoRA training on Qwen2.5-3B", 10.5, MUTED, anchor="end")]
-    curve = (f"M{x0} {y15:.0f} C{x0 + 120} {y15:.0f} {x0 + 170} {y15 + 6:.0f} {x0 + 230} {y15 - 30:.0f} "
-             f"S{x0 + 330} {yt + 10} {x1} {yt}")
-    a.append(f'<path class="draw" d="{curve}" stroke="{AMBER}" stroke-width="2.4" fill="none"/>')
-    a.append(t(x0 - 8, y15 + 4, "15%", 13, FG, anchor="end", extra='font-weight="600"'))
-    a.append(t(x1, yt - 12, "60%", 13, AMBER, anchor="end", extra='font-weight="600"'))
-    a.append(f'<line x1="{x0}" y1="{yt}" x2="{x1}" y2="{yt}" stroke="{AMBER}" stroke-opacity=".25" stroke-dasharray="2 5"/>')
-    a.append(t(x0 + 10, yt + 4, "SURVIVAL RATE", 10.5, MUTED, extra='letter-spacing="1.2"'))
-    a.append(f'<circle class="pulse" cx="{x1}" cy="{yt}" r="6" fill="none" stroke="{AMBER}"/>'
-             f'<circle cx="{x1}" cy="{yt}" r="4" fill="{AMBER}"/>')
-    return frame("SurviveCity", "MULTI-AGENT RL ON OPENENV", AMBER,
-                 "Survival went from 15% to 60%, four times higher, after finding and closing "
-                 "3 reward-hacking exploits.", "\n  ".join(a), "TOP 100 · META × PYTORCH")
+    gx, gy, c = 30, 90, 15
+    RED = "#e0604f"
+
+    def px(col, row):
+        return gx + col * c + c / 2, gy + row * c + c / 2
+
+    def walker(cells, color, dur, r=5, infected=False):
+        pts = cells + cells[-2:0:-1]  # walk out and back
+        vals = ";".join(f"{px(cc, rr)[0]:.1f} {px(cc, rr)[1]:.1f}" for cc, rr in pts + pts[:1])
+        fill = color
+        anim = ""
+        if infected:  # hidden role: looks like everyone else until the reveal
+            anim = (f'<animate attributeName="fill" values="{color};{color};{RED};{RED}" '
+                    f'keyTimes="0;.45;.5;1" dur="{dur}" repeatCount="indefinite"/>')
+        return (f'<g><animateTransform attributeName="transform" type="translate" values="{vals}" '
+                f'dur="{dur}" repeatCount="indefinite"/><circle r="{r}" fill="{fill}">{anim}</circle></g>')
+
+    a = []
+    for rr, line in enumerate(CITY):
+        for cc, ch in enumerate(line):
+            x, y = gx + cc * c, gy + rr * c
+            if ch == "#":
+                a.append(f'<rect x="{x + 1}" y="{y + 1}" width="{c - 2}" height="{c - 2}" fill="{DIM}"/>')
+            elif ch == "S":
+                a.append(f'<rect x="{x}" y="{y}" width="{c}" height="{c}" fill="{CYAN}" fill-opacity=".14"/>')
+            elif ch == "F":
+                a.append(f'<rect x="{x + 5}" y="{y + 5}" width="{c - 10}" height="{c - 10}" fill="{GREEN}"/>')
+            else:
+                a.append(f'<circle cx="{x + c / 2}" cy="{y + c / 2}" r=".9" fill="{DIM}"/>')
+    a.append(f'<rect x="{gx + 4 * c}" y="{gy + 4 * c}" width="{3 * c}" height="{3 * c}" fill="none" stroke="{CYAN}" stroke-opacity=".6"/>')
+    # agents leave the safehouse to forage; one is secretly infected
+    a.append(walker([(5, 5), (5, 4), (5, 3), (4, 3), (4, 2), (3, 2), (2, 2), (2, 1), (1, 1)], FG, "7s"))
+    a.append(walker([(4, 6), (4, 7), (4, 8), (3, 8), (2, 8), (1, 8)], FG, "6s", infected=True))
+    a.append(walker([(6, 5), (6, 4), (7, 4), (8, 4), (8, 3), (8, 2), (8, 1)], FG, "6.5s"))
+    # zombies roam the edges
+    a.append(walker([(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), (4, 0)], AMBER, "5s", 4.5))
+    a.append(walker([(9, 0), (9, 1), (9, 2), (9, 3), (8, 3), (7, 3), (7, 2)], AMBER, "5.5s", 4.5))
+    a.append(walker([(9, 9), (8, 9), (7, 9), (7, 8), (6, 8), (5, 8), (5, 9)], AMBER, "6s", 4.5))
+    ly = gy + 10 * c + 14
+    a.append(f'<circle cx="{gx + 4}" cy="{ly - 3}" r="3.5" fill="{FG}"/>' + t(gx + 11, ly, "agent", 9.5, MUTED))
+    a.append(f'<circle cx="{gx + 58}" cy="{ly - 3}" r="3.5" fill="{AMBER}"/>' + t(gx + 65, ly, "zombie", 9.5, MUTED))
+    a.append(f'<circle cx="{gx + 118}" cy="{ly - 3}" r="3.5" fill="{RED}"/>' + t(gx + 125, ly, "infected", 9.5, MUTED))
+
+    # the result, labelled as the README measures it
+    rx = 250
+    a.append(t(rx, 112, "MEAN AGENTS ALIVE AT END", 10.5, MUTED, extra='letter-spacing="1.2"'))
+    a.append(t(rx, 160, "0.15", 38, FG, SANS, extra='font-weight="700"'))
+    a.append(f'<path class="draw" d="M{rx + 92} 147 H{rx + 140}" stroke="{AMBER}" stroke-width="2" fill="none"/>'
+             f'<path d="M{rx + 134} 141 l7 6 l-7 6" stroke="{AMBER}" stroke-width="2" fill="none"/>')
+    a.append(t(rx + 152, 160, "0.60", 38, AMBER, SANS, extra='font-weight="700"'))
+    a.append(t(rx + 258, 160, "4x", 16, AMBER, MONO))
+    a.append(t(rx, 186, "random baseline vs trained policy", 11, MUTED))
+    a.append(t(rx, 222, "3 REWARD HACKS CLOSED", 10.5, MUTED, extra='letter-spacing="1.2"'))
+    for i, h in enumerate(["scan-spam", "vote-spam", "idle-wait"]):
+        x = rx + i * 104
+        a.append(f'<line class="fade" style="animation-delay:{.6 + i * .3:.1f}s" x1="{x}" y1="240" x2="{x + len(h) * 6.7:.0f}" y2="240" stroke="{AMBER}"/>')
+        a.append(t(x, 245, h, 11, FG))
+    return frame("SurviveCity", "ZOMBIE SURVIVAL, HIDDEN INFECTED AGENT", AMBER,
+                 "GRPO + LoRA on Qwen2.5-3B, about 90 hours on a V100 DGX across 4 documented runs.",
+                 "\n  ".join(a), "TOP 100 · META × PYTORCH")
 
 
 def contextual():
