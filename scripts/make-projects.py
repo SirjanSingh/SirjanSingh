@@ -146,7 +146,7 @@ CITY = [
 
 
 def survivecity():
-    gx, gy, c = 30, 90, 15
+    gx, gy, c = 225, 90, 15
     RED = "#e0604f"
 
     def px(col, row):
@@ -189,18 +189,8 @@ def survivecity():
     a.append(f'<circle cx="{gx + 58}" cy="{ly - 3}" r="3.5" fill="{AMBER}"/>' + t(gx + 65, ly, "zombie", 9.5, MUTED))
     a.append(f'<circle cx="{gx + 118}" cy="{ly - 3}" r="3.5" fill="{RED}"/>' + t(gx + 125, ly, "infected", 9.5, MUTED))
 
-    # what you are watching
-    rx = 250
-    for i, ln in enumerate(["Agents leave the safehouse to forage",
-                            "while zombies roam the city.",
-                            "",
-                            "One of them is secretly infected.",
-                            "The rest have to spot who from how",
-                            "they behave, then vote them out."]):
-        if ln:
-            a.append(t(rx, 122 + i * 22, ln, 15, FG if i < 2 else MUTED, SANS))
     return frame("SurviveCity", "ZOMBIE SURVIVAL, HIDDEN INFECTED AGENT", AMBER,
-                 "Multi-agent RL environment on OpenEnv, trained with GRPO + LoRA on Qwen2.5-3B.",
+                 "Agents forage, zombies roam, one agent is secretly infected. GRPO + LoRA on Qwen2.5-3B.",
                  "\n  ".join(a), "TOP 100 · META × PYTORCH")
 
 
