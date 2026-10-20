@@ -130,7 +130,9 @@ def agentos():
                  "the cost and failures came from.", "\n  ".join(a))
 
 
-# SurviveCity city layout (v1, 3 agents), from the zombiee README (Z zombie spawn, F food, S safehouse, # wall).
+# SurviveCity: the core 10x10 city is the v1 layout from the zombiee README
+# (Z zombie spawn, F food, S safehouse, # wall). The outskirts on either side are
+# decoration so the card is not empty: extra buildings and wandering zombies.
 CITY = [
     "Z........Z",
     ".F......F.",
@@ -143,52 +145,105 @@ CITY = [
     ".F......F.",
     ".........Z",
 ]
+COLS, CORE = 30, 10  # core city sits in columns 10..19
+CLEAR_COLS = {2, 6, 23, 27}  # outskirt streets kept free for zombies
+
+
+def outskirts():
+    import random
+    rnd = random.Random(11)
+    cells = set()
+    for col in list(range(0, CORE)) + list(range(CORE * 2, COLS)):
+        if col in CLEAR_COLS:
+            continue
+        for row in range(2, 8):
+            if rnd.random() < .42:
+                cells.add((col, row))
+    return cells
 
 
 def survivecity():
-    gx, gy, c = 225, 90, 15
-    RED = "#e0604f"
+    gx, gy, c = 45, 88, 17
+    RED, ZOMB, ZDARK = "#e0604f", "#8fbf6a", "#557a43"
+    sprites = f"""<defs>
+    <g id="zed"><rect x="-2.6" y="-8" width="5.2" height="4.6" fill="{ZOMB}"/>
+      <rect x="-1.6" y="-6.6" width="1.2" height="1.2" fill="{RED}"/><rect x=".6" y="-6.6" width="1.2" height="1.2" fill="{RED}"/>
+      <rect x="-2.2" y="-3.2" width="4.4" height="5.4" fill="{ZDARK}"/>
+      <rect x="2" y="-2.6" width="4.2" height="1.6" fill="{ZOMB}"/><rect x="2" y="-.4" width="3.6" height="1.6" fill="{ZOMB}"/>
+      <rect x="-2.2" y="2.2" width="1.7" height="3.4" fill="{ZDARK}"/><rect x=".5" y="2.2" width="1.7" height="3.4" fill="{ZDARK}"/></g>
+    <g id="man"><circle cx="0" cy="-5.6" r="2.4"/><rect x="-2.2" y="-3" width="4.4" height="5.4"/>
+      <rect x="-2.2" y="2.4" width="1.7" height="3.4"/><rect x=".5" y="2.4" width="1.7" height="3.4"/></g>
+  </defs>
+  <style>.shamble {{ transform-box: fill-box; transform-origin: center bottom; animation: sham .9s ease-in-out infinite alternate; }}
+    @keyframes sham {{ from {{ transform: rotate(-9deg) }} to {{ transform: rotate(9deg) }} }}
+    .win {{ animation: win 3s steps(1) infinite; }} @keyframes win {{ 50% {{ opacity: .15 }} }}
+    @media (prefers-reduced-motion: reduce) {{ .shamble,.win {{ animation: none }} }}</style>"""
 
     def px(col, row):
         return gx + col * c + c / 2, gy + row * c + c / 2
 
-    def walker(cells, color, dur, r=5, infected=False):
-        pts = cells + cells[-2:0:-1]  # walk out and back
-        vals = ";".join(f"{px(cc, rr)[0]:.1f} {px(cc, rr)[1]:.1f}" for cc, rr in pts + pts[:1])
-        fill = color
-        anim = ""
-        if infected:  # hidden role: looks like everyone else until the reveal
-            anim = (f'<animate attributeName="fill" values="{color};{color};{RED};{RED}" '
-                    f'keyTimes="0;.45;.5;1" dur="{dur}" repeatCount="indefinite"/>')
-        return (f'<g><animateTransform attributeName="transform" type="translate" values="{vals}" '
-                f'dur="{dur}" repeatCount="indefinite"/><circle r="{r}" fill="{fill}">{anim}</circle></g>')
+    def walker(cells, kind, dur, infected=False, delay=0):
+        pts = cells + cells[-2:0:-1]
+        vals = ";".join(f"{px(cc, rr)[0]:.1f} {px(cc, rr)[1] + 2:.1f}" for cc, rr in pts + pts[:1])
+        move = (f'<animateTransform attributeName="transform" type="translate" values="{vals}" '
+                f'dur="{dur}" begin="-{delay}s" repeatCount="indefinite"/>')
+        if kind == "zed":
+            return f'<g>{move}<use href="#zed" class="shamble" style="animation-delay:-{delay}s"/></g>'
+        fill = f'<animate attributeName="fill" values="{FG};{FG};{RED};{RED}" keyTimes="0;.45;.5;1" dur="{dur}" repeatCount="indefinite"/>' if infected else ""
+        return f'<g>{move}<use href="#man" fill="{FG}">{fill}</use></g>'
 
-    a = []
-    for rr, line in enumerate(CITY):
-        for cc, ch in enumerate(line):
-            x, y = gx + cc * c, gy + rr * c
+    def building(x, y, k):
+        s = (f'<rect x="{x + 1.5}" y="{y + 1.5}" width="{c - 3}" height="{c - 3}" fill="#2b2f35" stroke="{DIM}" stroke-opacity=".8"/>')
+        for wx, wy in [(5, 5), (10, 5), (5, 10), (10, 10)]:
+            lit = (k + wx + wy) % 4 == 0
+            cls = ' class="win"' if lit and k % 2 else ""
+            s += (f'<rect{cls} x="{x + wx}" y="{y + wy}" width="2.6" height="2.6" '
+                  f'fill="{AMBER if lit else DIM}" fill-opacity="{1 if lit else .7}"/>')
+        return s
+
+    a = [sprites]
+    out = outskirts()
+    k = 0
+    for row in range(10):
+        for col in range(COLS):
+            x, y = gx + col * c, gy + row * c
+            core = CORE <= col < CORE * 2
+            ch = CITY[row][col - CORE] if core else ("#" if (col, row) in out else ".")
             if ch == "#":
-                a.append(f'<rect x="{x + 1}" y="{y + 1}" width="{c - 2}" height="{c - 2}" fill="{DIM}"/>')
+                a.append(building(x, y, k)); k += 1
             elif ch == "S":
-                a.append(f'<rect x="{x}" y="{y}" width="{c}" height="{c}" fill="{CYAN}" fill-opacity=".14"/>')
+                a.append(f'<rect x="{x}" y="{y}" width="{c}" height="{c}" fill="{CYAN}" fill-opacity=".13"/>')
             elif ch == "F":
-                a.append(f'<rect x="{x + 5}" y="{y + 5}" width="{c - 10}" height="{c - 10}" fill="{GREEN}"/>')
+                a.append(f'<rect x="{x + 4}" y="{y + 5}" width="{c - 8}" height="{c - 9}" fill="{AMBER}" fill-opacity=".85"/>'
+                         f'<path d="M{x + 4} {y + 5} l{c - 8} {c - 9} M{x + c - 4} {y + 5} l-{c - 8} {c - 9}" stroke="#7a5a1c"/>')
             else:
-                a.append(f'<circle cx="{x + c / 2}" cy="{y + c / 2}" r=".9" fill="{DIM}"/>')
-    a.append(f'<rect x="{gx + 4 * c}" y="{gy + 4 * c}" width="{3 * c}" height="{3 * c}" fill="none" stroke="{CYAN}" stroke-opacity=".6"/>')
-    # agents leave the safehouse to forage; one is secretly infected
-    a.append(walker([(5, 5), (5, 4), (5, 3), (4, 3), (4, 2), (3, 2), (2, 2), (2, 1), (1, 1)], FG, "7s"))
-    a.append(walker([(4, 6), (4, 7), (4, 8), (3, 8), (2, 8), (1, 8)], FG, "6s", infected=True))
-    a.append(walker([(6, 5), (6, 4), (7, 4), (8, 4), (8, 3), (8, 2), (8, 1)], FG, "6.5s"))
-    # zombies roam the edges
-    a.append(walker([(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), (4, 0)], AMBER, "5s", 4.5))
-    a.append(walker([(9, 0), (9, 1), (9, 2), (9, 3), (8, 3), (7, 3), (7, 2)], AMBER, "5.5s", 4.5))
-    a.append(walker([(9, 9), (8, 9), (7, 9), (7, 8), (6, 8), (5, 8), (5, 9)], AMBER, "6s", 4.5))
-    ly = gy + 10 * c + 14
-    a.append(f'<circle cx="{gx + 4}" cy="{ly - 3}" r="3.5" fill="{FG}"/>' + t(gx + 11, ly, "agent", 9.5, MUTED))
-    a.append(f'<circle cx="{gx + 58}" cy="{ly - 3}" r="3.5" fill="{AMBER}"/>' + t(gx + 65, ly, "zombie", 9.5, MUTED))
-    a.append(f'<circle cx="{gx + 118}" cy="{ly - 3}" r="3.5" fill="{RED}"/>' + t(gx + 125, ly, "infected", 9.5, MUTED))
+                a.append(f'<circle cx="{x + c / 2}" cy="{y + c / 2}" r=".8" fill="{DIM}"/>')
+    sx, sy = gx + (CORE + 4) * c, gy + 4 * c
+    a.append(f'<rect x="{sx}" y="{sy}" width="{3 * c}" height="{3 * c}" fill="none" stroke="{CYAN}" stroke-opacity=".7"/>'
+             f'<path d="M{sx + 6} {sy} L{sx + 1.5 * c} {sy - 9} L{sx + 3 * c - 6} {sy}" fill="none" stroke="{CYAN}" stroke-opacity=".7"/>')
 
+    o = CORE  # shift core coordinates
+    # survivors leave the safehouse to forage; one is secretly infected
+    a.append(walker([(o + 5, 5), (o + 5, 4), (o + 5, 3), (o + 4, 3), (o + 4, 2), (o + 3, 2), (o + 2, 2), (o + 2, 1), (o + 1, 1)], "man", "7s"))
+    a.append(walker([(o + 4, 6), (o + 4, 7), (o + 4, 8), (o + 3, 8), (o + 2, 8), (o + 1, 8)], "man", "6s", infected=True))
+    a.append(walker([(o + 6, 5), (o + 6, 4), (o + 7, 4), (o + 8, 4), (o + 8, 3), (o + 8, 2), (o + 8, 1)], "man", "6.5s"))
+    # the three spawn-corner zombies
+    a.append(walker([(o, 0), (o + 1, 0), (o + 2, 0), (o + 3, 0), (o + 3, 1), (o + 4, 1), (o + 4, 0)], "zed", "7s"))
+    a.append(walker([(o + 9, 0), (o + 9, 1), (o + 9, 2), (o + 9, 3), (o + 8, 3), (o + 7, 3), (o + 7, 2)], "zed", "7.5s", delay=2))
+    a.append(walker([(o + 9, 9), (o + 8, 9), (o + 7, 9), (o + 7, 8), (o + 6, 8), (o + 5, 8), (o + 5, 9)], "zed", "8s", delay=1))
+    # the horde in the outskirts, shuffling along open streets
+    for col, dur, d in [(2, "9s", 0), (6, "11s", 4), (23, "10s", 2), (27, "12s", 6)]:
+        a.append(walker([(col, r) for r in range(0, 10)], "zed", dur, delay=d))
+    a.append(walker([(cc, 0) for cc in range(0, 9)], "zed", "13s", delay=3))
+    a.append(walker([(cc, 9) for cc in range(21, 30)], "zed", "12s", delay=5))
+    a.append(walker([(cc, 9) for cc in range(0, 8)], "zed", "10s", delay=7))
+    a.append(walker([(cc, 0) for cc in range(21, 30)], "zed", "14s", delay=1))
+
+    # legend, top right under the badge
+    lx, ly = W - 196, 62
+    a.append(f'<use href="#man" fill="{FG}" transform="translate({lx} {ly})"/>' + t(lx + 8, ly + 3, "survivor", 10, MUTED))
+    a.append(f'<use href="#zed" transform="translate({lx + 72} {ly})"/>' + t(lx + 84, ly + 3, "zombie", 10, MUTED))
+    a.append(f'<use href="#man" fill="{RED}" transform="translate({lx + 136} {ly})"/>' + t(lx + 144, ly + 3, "infected", 10, MUTED))
     return frame("SurviveCity", "ZOMBIE SURVIVAL, HIDDEN INFECTED AGENT", AMBER,
                  "Agents forage, zombies roam, one agent is secretly infected. GRPO + LoRA on Qwen2.5-3B.",
                  "\n  ".join(a), "TOP 100 · META × PYTORCH")
