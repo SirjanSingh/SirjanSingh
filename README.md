@@ -82,8 +82,9 @@ Real-time supply-chain intelligence across 5 microservices.
 </td>
 <td width="50%" valign="top">
 
-**[RawCrop](https://github.com/SirjanSingh/rawcrop)** &nbsp;`tooling`<br/>
-Preview and crop RAW photos (NEF, CR2, ARW, DNG) in under a second. React + FastAPI.
+**[AgentOS](https://github.com/SirjanSingh/agentos)** &nbsp;`agent tooling`<br/>
+A local control plane for Claude Code: live run streaming over WebSocket, human-in-the-loop tool
+approval, per-skill cost and success analytics, and an Obsidian vault for outputs. TypeScript + Node.
 
 </td>
 </tr>
