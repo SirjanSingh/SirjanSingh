@@ -189,22 +189,18 @@ def survivecity():
     a.append(f'<circle cx="{gx + 58}" cy="{ly - 3}" r="3.5" fill="{AMBER}"/>' + t(gx + 65, ly, "zombie", 9.5, MUTED))
     a.append(f'<circle cx="{gx + 118}" cy="{ly - 3}" r="3.5" fill="{RED}"/>' + t(gx + 125, ly, "infected", 9.5, MUTED))
 
-    # the result, labelled as the README measures it
+    # what you are watching
     rx = 250
-    a.append(t(rx, 112, "MEAN AGENTS ALIVE AT END", 10.5, MUTED, extra='letter-spacing="1.2"'))
-    a.append(t(rx, 160, "0.15", 38, FG, SANS, extra='font-weight="700"'))
-    a.append(f'<path class="draw" d="M{rx + 92} 147 H{rx + 140}" stroke="{AMBER}" stroke-width="2" fill="none"/>'
-             f'<path d="M{rx + 134} 141 l7 6 l-7 6" stroke="{AMBER}" stroke-width="2" fill="none"/>')
-    a.append(t(rx + 152, 160, "0.60", 38, AMBER, SANS, extra='font-weight="700"'))
-    a.append(t(rx + 258, 160, "4x", 16, AMBER, MONO))
-    a.append(t(rx, 186, "random baseline vs trained policy", 11, MUTED))
-    a.append(t(rx, 222, "3 REWARD HACKS CLOSED", 10.5, MUTED, extra='letter-spacing="1.2"'))
-    for i, h in enumerate(["scan-spam", "vote-spam", "idle-wait"]):
-        x = rx + i * 104
-        a.append(f'<line class="fade" style="animation-delay:{.6 + i * .3:.1f}s" x1="{x}" y1="240" x2="{x + len(h) * 6.7:.0f}" y2="240" stroke="{AMBER}"/>')
-        a.append(t(x, 245, h, 11, FG))
+    for i, ln in enumerate(["Agents leave the safehouse to forage",
+                            "while zombies roam the city.",
+                            "",
+                            "One of them is secretly infected.",
+                            "The rest have to spot who from how",
+                            "they behave, then vote them out."]):
+        if ln:
+            a.append(t(rx, 122 + i * 22, ln, 15, FG if i < 2 else MUTED, SANS))
     return frame("SurviveCity", "ZOMBIE SURVIVAL, HIDDEN INFECTED AGENT", AMBER,
-                 "GRPO + LoRA on Qwen2.5-3B, about 90 hours on a V100 DGX across 4 documented runs.",
+                 "Multi-agent RL environment on OpenEnv, trained with GRPO + LoRA on Qwen2.5-3B.",
                  "\n  ".join(a), "TOP 100 · META × PYTORCH")
 
 
